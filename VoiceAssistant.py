@@ -1,6 +1,6 @@
 from os import system
 import speech_recognition as sr
-from gpt4all import GPT4ALL
+from gpt4all import GPT4All
 import sys
 import whisper
 import warnings
@@ -13,7 +13,7 @@ source = sr.Microphone()
 recognizer = sr.Recognizer()
 
 base_model_path = os.path.expanduser('~/.cache/whisper/base.pt')
-base_model = whisper.load_model(base_model_path)
+base_model = whisper.load_model("base")
 
 if sys.platform != 'darwin':
     import pyttsx3
@@ -33,7 +33,7 @@ def listen_for_command():
         with open("command.wav","wb") as f:
             f.write(audio.get_wav_data())
         
-        command = base_model.transcribe("command.wav")
+        command = base_model.transcribe("command.wav",fp16=False)
         if command and command['text']:
             print("Powiedziales",command['text'])
             return command['text'].lower()

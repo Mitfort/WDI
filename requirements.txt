@@ -1,0 +1,8 @@
+SpeechRecognition
+gpt4all
+openai-whisper
+pyautogui
+pyaudio
+psutil
+wikipedia
+tkinter
